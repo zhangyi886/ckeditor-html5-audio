@@ -26,17 +26,18 @@ CKEDITOR.dialog.add( 'html5audio', function( editor ) {
                             widget.setData( 'src', this.getValue() );
                         }
                     },
-                    {
-                        type: 'button',
-                        id: 'browse',
-                        // v-align with the 'txtUrl' field.
-                        // TODO: We need something better than a fixed size here.
-                        style: 'display:inline-block;margin-top:14px;',
-                        align: 'center',
-                        label: editor.lang.common.browseServer,
-                        hidden: true,
-                        filebrowser: 'info:url'
-                    } ]
+                    // {
+                    //     type: 'button',
+                    //     id: 'browse',
+                    //     // v-align with the 'txtUrl' field.
+                    //     // TODO: We need something better than a fixed size here.
+                    //     style: 'display:inline-block;margin-top:14px;',
+                    //     align: 'center',
+                    //     label: editor.lang.common.browseServer,
+                    //     hidden: true,
+                    //     filebrowser: 'info:url'
+                    // } 
+                    ]
                 } ]
             },
             {
