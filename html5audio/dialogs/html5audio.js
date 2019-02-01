@@ -1,49 +1,50 @@
-CKEDITOR.dialog.add( 'html5audio', function( editor ) {
+CKEDITOR.dialog.add('html5audio', function (editor) {
     return {
         title: editor.lang.html5audio.title,
         minWidth: 500,
         minHeight: 100,
-        contents: [ {
+        contents: [{
             id: 'info',
             label: editor.lang.html5audio.infoLabel,
-            elements: [ {
+            elements: [{
                 type: 'vbox',
                 padding: 0,
-                children: [ {
+                children: [{
                     type: 'hbox',
-                    widths: [ '365px', '110px' ],
+                    widths: ['365px', '110px'],
                     align: 'right',
-                    children: [ {
+                    children: [{
                         type: 'text',
                         id: 'url',
                         label: editor.lang.common.url,
                         required: true,
-                        validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.html5audio.urlMissing ),
-                        setup: function( widget ) {
-                            this.setValue( widget.data.src );
+                        validate: CKEDITOR.dialog.validate.notEmpty(editor.lang.html5audio.urlMissing),
+                        setup: function (widget) {
+                            this.setValue(widget.data.src);
                         },
-                        commit: function( widget ) {
-                            widget.setData( 'src', this.getValue() );
+                        commit: function (widget) {
+                            widget.setData('src', this.getValue());
                         }
                     },
-                    // {
-                    //     type: 'button',
-                    //     id: 'browse',
-                    //     // v-align with the 'txtUrl' field.
-                    //     // TODO: We need something better than a fixed size here.
-                    //     style: 'display:inline-block;margin-top:14px;',
-                    //     align: 'center',
-                    //     label: editor.lang.common.browseServer,
-                    //     hidden: true,
-                    //     filebrowser: 'info:url'
-                    // } 
+                        // {
+                        //     type: 'button',
+                        //     id: 'browse',
+                        //     // v-align with the 'txtUrl' field.
+                        //     // TODO: We need something better than a fixed size here.
+                        //     style: 'display:inline-block;margin-top:14px;',
+                        //     align: 'center',
+                        //     label: editor.lang.common.browseServer,
+                        //     hidden: true,
+                        //     filebrowser: 'info:url'
+                        // } 
                     ]
-                } ]
+                }]
             },
             {
                 type: 'hbox',
                 id: 'alignment',
-                children: [ {
+                children: [{
+                    hidden: true,
                     type: 'radio',
                     id: 'align',
                     label: editor.lang.common.align,
@@ -54,23 +55,47 @@ CKEDITOR.dialog.add( 'html5audio', function( editor ) {
                         [editor.lang.common.alignNone, 'none']
                     ],
                     'default': 'center',
-                    setup: function( widget ) {
-                        if ( widget.data.align ) {
-                            this.setValue( widget.data.align );
+                    setup: function (widget) {
+                        if (widget.data.align) {
+                            this.setValue(widget.data.align);
                         }
                     },
-                    commit: function( widget ) {
-                        widget.setData( 'align', this.getValue() );
+                    commit: function (widget) {
+                        widget.setData('align', this.getValue());
                     }
-                } ]
-            } ]
+                },]
+            },
+
+            {
+                type: 'hbox',
+                children: [{
+                    type: 'radio',
+                    id: 'autoplay1',
+                    label: editor.lang.html5audio.autoplay,
+                    items: [
+                        [editor.lang.html5audio.yes, 'yes'],
+                        [editor.lang.html5audio.no, 'no']
+                    ],
+                    'default': 'yes',
+                    setup: function (widget) {
+                        if (widget.data.autoplay) {
+                            this.setValue(widget.data.autoplay);
+                        }
+                    },
+                    commit: function (widget) {
+                        widget.setData('autoplay', this.getValue());
+                    }
+                },]
+            },
+
+            ]
         },
         {
             id: 'Upload',
             hidden: true,
             filebrowser: 'uploadButton',
             label: editor.lang.html5audio.upload,
-            elements: [ {
+            elements: [{
                 type: 'file',
                 id: 'upload',
                 label: editor.lang.html5audio.btnUpload,
@@ -82,18 +107,34 @@ CKEDITOR.dialog.add( 'html5audio', function( editor ) {
                 id: 'uploadButton',
                 filebrowser: 'info:url',
                 label: editor.lang.html5audio.btnUpload,
-                'for': [ 'Upload', 'upload' ]
-            } ]
+                // onClick: function () {
+                //     alert('This is a custome button');
+                // },
+                'for': ['Upload', 'upload']
+            },
+                // {
+                //     type: 'button',
+                //     id: 'testButtonID',
+                //     label: 'test',
+                //     onClick: function () {
+                //         this.setValue('aa');
+                //         this.innerHTML='aa';
+                //         alert(this.getValue());
+
+                //     }
+                // }
+            ]
         },
         {
+            hidden: true,
             id: 'advanced',
             label: editor.lang.html5audio.advanced,
-            elements: [ {
+            elements: [{
                 type: 'vbox',
                 padding: 10,
-                children: [ {
+                children: [{
                     type: 'hbox',
-                    children: [ {
+                    children: [{
                         type: 'radio',
                         id: 'autoplay',
                         label: editor.lang.html5audio.autoplay,
@@ -102,54 +143,54 @@ CKEDITOR.dialog.add( 'html5audio', function( editor ) {
                             [editor.lang.html5audio.no, 'no']
                         ],
                         'default': 'yes',
-                        setup: function( widget ) {
-                            if ( widget.data.autoplay ) {
-                                this.setValue( widget.data.autoplay );
+                        setup: function (widget) {
+                            if (widget.data.autoplay) {
+                                this.setValue(widget.data.autoplay);
                             }
                         },
-                        commit: function( widget ) {
-                            widget.setData( 'autoplay', this.getValue() );
+                        commit: function (widget) {
+                            widget.setData('autoplay', this.getValue());
                         }
                     },
+                        // {
+                        //     type: 'radio',
+                        //     id: 'allowdownload',
+                        //     label: editor.lang.html5audio.allowdownload,
+                        //     items: [
+                        //         [editor.lang.html5audio.yes, 'yes'],
+                        //         [editor.lang.html5audio.no, 'no']
+                        //     ],
+                        //     'default': 'no',
+                        //     setup: function( widget ) {
+                        //         if ( widget.data.allowdownload ) {
+                        //             this.setValue(widget.data.allowdownload);
+                        //         }
+                        //     },
+                        //     commit: function( widget ) {
+                        //         widget.setData( 'allowdownload', this.getValue() );
+                        //     }
+                        // }
+                    ]
+                },
                     // {
-                    //     type: 'radio',
-                    //     id: 'allowdownload',
-                    //     label: editor.lang.html5audio.allowdownload,
-                    //     items: [
-                    //         [editor.lang.html5audio.yes, 'yes'],
-                    //         [editor.lang.html5audio.no, 'no']
-                    //     ],
-                    //     'default': 'no',
-                    //     setup: function( widget ) {
-                    //         if ( widget.data.allowdownload ) {
-                    //             this.setValue(widget.data.allowdownload);
+                    //     type: 'hbox',
+                    //     children: [ {
+                    //         type: "text",
+                    //         id: 'advisorytitle',
+                    //         label: editor.lang.html5audio.advisorytitle,
+                    //         'default': '',
+                    //         setup: function( widget ) {
+                    //             if ( widget.data.advisorytitle ) {
+                    //                 this.setValue(widget.data.advisorytitle);
+                    //             }
+                    //         },
+                    //         commit: function( widget ) {
+                    //             widget.setData( 'advisorytitle', this.getValue() );
                     //         }
-                    //     },
-                    //     commit: function( widget ) {
-                    //         widget.setData( 'allowdownload', this.getValue() );
-                    //     }
+                    //     } ]
                     // }
-                 ]
-                }, 
-                // {
-                //     type: 'hbox',
-                //     children: [ {
-                //         type: "text",
-                //         id: 'advisorytitle',
-                //         label: editor.lang.html5audio.advisorytitle,
-                //         'default': '',
-                //         setup: function( widget ) {
-                //             if ( widget.data.advisorytitle ) {
-                //                 this.setValue(widget.data.advisorytitle);
-                //             }
-                //         },
-                //         commit: function( widget ) {
-                //             widget.setData( 'advisorytitle', this.getValue() );
-                //         }
-                //     } ]
-                // }
                 ]
-            } ]
-        } ]
+            }]
+        }]
     };
-} );
+});
